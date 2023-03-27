@@ -1,0 +1,263 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class AreaGeographicController{
++GeographicValue()
++bstSubTree()
++getSumValueItemCode()
++getSumValueElementCode()
++getSumValueYearCode()
+}
+
+class FindAreaController{
++findBST()
+}
+
+class NareaController{
++element_itensubtree()
++year_narea()
++Narea()
+}
+
+class YearEstimationController{
++dataRestricted()
++yearEstimationController()
+}
+AreaGeographicController --> FileReaderDataBST:Uses
+AreaGeographicController --> FileReaderCoordinates:Uses
+FindAreaController --> FileReaderCoordinates:Uses
+NareaController --> FileReaderDataBST:Uses
+YearEstimationController9 --> FileReaderDataBST:Uses
+
+class Area{
++getArea()
++compareTo()
++toString()
+-area
+}
+
+class AreaCode{
++getAreaCode()
++compareTo()
++toString()
+-areaCode
+}
+
+class AreaCodeM49{
++getAreaCodeM49()
++compareTo()
++toString()
+-AreaCodeM49
+}
+Area ..> AreaCode:extends
+Area ..> AreaCodeM49:extends
+Area <.. Data:uses
+
+class Element{
++getElement()
++compareTo()
++toString()
+-element
+}
+
+class ElementCode{
++getElementCode()
++compareTo()
++toString()
+-elementCode
+}
+
+Element ..> ElementCode:extends
+Element <.. Data:uses
+
+
+class Item{
++getItem()
++compareTo()
++toString()
+-item
+}
+
+class ItemCode{
++getItemCode()
++compareTo()
++toString()
+-itemCode
+}
+
+class ItemCodeCPC{
++getItemCodeCPC()
++compareTo()
++toString()
+-itemCodeCPC
+}
+
+Item ..> ItemCode:extends
+Item ..> ItemCodeCPC:extends
+Item <.. Data:uses
+
+
+class Value{
++getValue()
++compareTo()
++toString()
+-value
+}
+Value <.. Data:uses
+
+class Year{
++getYear()
++compareTo()
++toString()
+-year
+}
+
+
+class YearCode{
++getYearCode()
++compareTo()
++toString()
+-yearCode
+}
+Year ..> YearCode:extends
+Year <.. Data:uses
+
+class Flag{
++getFlag()
++toString()
+-description
+
+}
+
+Flag ..> description:extends
+Flag <.. DataCoordinates:uses
+
+class Latitude{
++getLatitude()
+-latitude
+}
+
+Latitude <.. DataCoordinates:uses
+
+class Longitude{
++getLongitude()
+-longitude
+}
+
+Longitude <.. DataCoordinates:uses
+
+class Unit{
+-Unit
++getUnit()
++toString()
+}
+Unit <.. Data:uses
+
+class DataCoordinates{
++getLatitude()
++getLongitude()
++getArea()
++toString()
+-latitude
+-longitude
+-area
+-country
+}
+
+
+class Data{
++getAreaCode()
++getAreaCodeM49()
++getArea()
++getItem()
++getItemCode()
++getItemCodeCPC()
++getElement()
++getElementCode()
++getYearCode()
++getYear()
++getUnit()
++getFlag()
++getDescription()
++getDataID()
+-areaCode
+-areaCodeM49
+-area
+-itemCode
+-itemCodeCpc
+-item
+-elementCode
+-element
+-yearCode
+-year
+-unit
+-value
+-flag
+-description
+-dataID
+
+}
+Data <.. FileReaderDataBST:uses
+
+class FileReaderDataBST{
+-data
+-description
+-bstTree
+-dataID
++readBST()
++getDescription()
++generateRandom()
++areaSubtree()
++areaCodeSubtree()
++areaCodeM49Subtree()
++elementSubtree()
++elementCodeSubtree()
++itemSubtree()
++itemCodeSubtree()
++itemCodeCPCSubtree()
++yearSubtree()
+}
+DataCoordinates <.. FileReaderCoordinates:uses
+class FileReaderCoordinates{
++readCoordinates()
+-dataCoordinates
+}
+
+interface BSTInterface{
++isEmpty()
++insert()
++remove()
++size()
++height()
++smallestElement()
++inOrder()
++preOrder()
++posOrder()
++nodesByLevel()
+}
+
+class BST{
+
+}
+BSTInterface ..> BST:extends
+
+
+class KDtree{
++inser()
++findNearestNeighbour()
+-coords
+}
+BST ..> KDtree:extends
+FileReaderDataBST<..BST:uses
+FileReaderCoordinates<..KDtree:uses
+
+class MenuUI{
++menu()
+}
+
+MenuUI  ..> AreaGeographicController
+MenuUI  ..> FindAreaController
+MenuUI  ..> NareaController
+MenuUI ..> ControllerAlex
+
+@enduml

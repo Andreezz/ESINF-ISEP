@@ -1,0 +1,27 @@
+public class MyTree extends BST<Integer> {
+    public boolean isSymmetric(){
+
+        Map<Integer, List<Integer>> nodesByLevel = nodesByLevel();
+
+        int height = height();
+
+        for (int i = 0; i < height; i++) {
+            List<Integer> nodes = nodesByLevel.get(i);
+
+            if(nodes.size() % 2 != 0)
+                return false;
+
+            for (int j = 0; j < nodes.size()/2; j++) {
+                Integer left = nodes.get(i);
+                Integer right = nodes.get(nodes.size() - i - 1);
+
+                if(!left.equals(right * -1))
+                    return false;
+
+            }
+        }
+
+        return true;
+    }
+
+}

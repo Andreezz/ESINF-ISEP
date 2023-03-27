@@ -1,0 +1,71 @@
+// ex3
+public class SpiralTraversal {
+    public static void spiralTraversal(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        boolean leftToRight = true;
+        while (!q.isEmpty()) {
+            int levelSize = q.size();
+            for (int i = 0; i < levelSize; i++) {
+                Node current = q.poll();
+                System.out.print(current.data + " ");
+                if (current.left != null) {
+                    q.add(current.left);
+                }
+                if (current.right != null) {
+                    q.add(current.right);
+                }
+            }
+            leftToRight = !leftToRight;
+        }
+    }
+
+
+//ex4
+Map<Dispositivo, Double> tempoMedioPorDispositivo(Graph<Dispositivo, Double> g) {
+
+    // Cria um mapa vazio para armazenar o resultado
+
+    Map<Dispositivo, Double> resultado = new HashMap<>();
+
+    // Utiliza o algoritmo de Dijkstra para calcular os caminhos mínimos entre todos os pares de dispositivos
+
+    Map<Dispositivo, Map<Dispositivo, Double>> caminhosMinimos = dijkstra(g);
+
+    // Para cada dispositivo no grafo
+
+    for (Dispositivo dispositivo : g.getVertices()) {
+
+        // Inicializa a soma do tempo para transmitir a informação para todos os outros dispositivos como zero
+
+        double soma = 0;
+        int numeroDeCaminhos = 0;
+
+        // Para cada dispositivo de destino no grafo
+
+        for (Dispositivo destino : g.getVertices()) {
+
+            // Se o dispositivo atual é o mesmo que o destino, pula para o próximo
+
+            if (dispositivo.equals(destino)) continue;
+
+            // Adiciona o tempo do caminho mínimo entre o dispositivo atual e o destino à soma
+
+            soma += caminhosMinimos.get(dispositivo).get(destino);
+            numeroDeCaminhos++;
+        }
+
+        // Adiciona a média do tempo para transmitir a informação para todos os outros dispositivos ao mapa de resultados
+
+        resultado.put(dispositivo, soma/numeroDeCaminhos);
+    }
+
+    // Retorna o mapa de resultados
+    return resultado;
+}
+
+
+//ex05

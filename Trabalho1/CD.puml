@@ -1,0 +1,94 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Area ..> Data
+Item..> Data
+Value..> Data
+Year..> Data
+FileReaderData <- Data:Adopts
+value ..>CompareQByCountryAscController
+Item ..>CompareQByCountryAscController
+value..>SuperiorQuantityController
+Item..>SuperiorQuantityController
+Area..>SuperiorQuantityController
+Value..>MinimalQuantityController
+Area..>CountryController
+Item..>CountryController
+Year..>CountryController
+SuperiorQuantityController --> FileReaderData:Uses
+MinimalQuantityController --> FileReaderData:Uses
+CompareQByCountryAscController --> FileReaderData:Uses
+CountryController --> FileReaderData:Uses
+MenuUI  ..> SuperiorQuantityController
+MenuUI  ..> MinimalQuantityController
+MenuUI  ..> CompareQByCountryAscController
+MenuUI ..> CountryController
+
+class SuperiorQuantityController{
++getCountriesWithFruit()
++getSuperiorQuantity()
+}
+
+class MinimalQuantityController{
++minimalNumber()
+}
+
+class CompareQByCountryAscController{
++cpyByFruit()
+}
+
+class CountryController{
++CountryMap()
+}
+
+class Area{
++getArea()
++equals()
+-area
+}
+
+class Item{
++getItem()
++equals()
+-item
+}
+
+class Value{
++getValue()
++compareTo()
++equals()
+-value
+}
+
+class Year{
++getYear()
+-year
+}
+
+class Data{
+-domainCoide
+-domain
+-areaCode
+-area
+-elementCode
+-element
+-itemCode
+-item
+-yearCode
+-year
+-unit
+-value
+-flag
+-description
+}
+
+class FileReaderData{
+-data
++readData()
+}
+
+class MenuUI{
++menu()
+}
+
+@enduml
